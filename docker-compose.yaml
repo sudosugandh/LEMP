@@ -2,22 +2,41 @@ version: "3"
 services:
   nginx:
     image: nginx:mainline
-#    network_mode: host
     container_name: nginx
     restart: always
     volumes:
-        - ./conf.d:/etc/nginx/conf.d/
-        - ./code:/usr/share/nginx/html/
+      - ./conf.d:/etc/nginx/conf.d/
+      - ./code:/usr/share/nginx/html/
     ports:
-        - "80:80"
+      - "80:80"
     links:
-        - php
+      - php
+      - adminer
+
   php:
     image: php:7.2-fpm-stretch
+  # build: ./docker
     container_name: php
     restart: always
- #   network_mode: host
     ports:
-        - "9000:9000"
+      - "9000:9000"
     volumes:
-        - ./code:/usr/share/nginx/html/
+      - ./code:/usr/share/nginx/html/
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
