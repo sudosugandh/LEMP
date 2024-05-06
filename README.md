@@ -12,11 +12,11 @@ Before you begin, ensure you have Docker and Docker Compose installed on your sy
 
 1. Clone this repository to your local machine:
 
-   git clone https://github.com/sudosugandh/LEMP.git
+   git clone https://github.com/sudosugandh/Lemp-Stack-Docker.git
 
 2. Navigate to the project directory:
 
-   cd LEMP
+   cd Lemp-Stack-Docker
 
 3. Run the following command to start the containers:
 
